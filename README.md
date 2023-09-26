@@ -7,7 +7,7 @@ This browser based web application to ...
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * 
-* Hi, I'm James. I'm not a morning person.
+* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 * Hello, I'm John. I have no money.
 	
 ## 3. Technologies and Resources Used
