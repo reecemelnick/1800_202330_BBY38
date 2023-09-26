@@ -6,7 +6,7 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* 
+* My name reece.
 * Hi, I'm James. I'm not a morning person.
 * Hello, I'm John. I have no money.
 	
