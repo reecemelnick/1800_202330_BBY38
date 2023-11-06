@@ -34,7 +34,7 @@
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link rel="stylesheet" href="./styles/landingStyle.css">
 
 </head>
 
@@ -43,37 +43,7 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><img src="images/CollecTraders.png" width="50"> CollecTraders</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            I want to:
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Buy</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sell</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    <nav id="navbarPlaceholder"></nav>
 
     <div class="mt-4">
         <div class="container-fluid">
@@ -89,49 +59,15 @@
         </div>
     </div>
 
-    <footer class="footer fixed-bottom bg-secondary h-5">
-        <div class="row text-center d-flex justify-content-center pt-2">
-            <div class="col-md-2">
-                <h6 class="text-uppercase font-weight-bold">
-                    <a href="message.html" class="text-white text-decoration-none">Messaging</a>
-                </h6>
-            </div>
-
-            <div class="col-md-2">
-                <h6 class="text-uppercase font-weight-bold">
-                    <a href="" class="text-white text-decoration-none">Listings</a>
-                </h6>
-            </div>
-
-            <div class="col-md-2">
-                <h6 class="text-uppercase font-weight-bold">
-                    <a href="index.html" class="text-white text-decoration-none">Home</a>
-                </h6>
-            </div>
-
-            <div class="col-md-2">
-                <h6 class="text-uppercase font-weight-bold">
-                    <a href="" class="text-white text-decoration-none">Bookmarks</a>
-                </h6>
-            </div>
-
-            <div class="col-md-2">
-                <h6 class="text-uppercase font-weight-bold">
-                    <a href="profile.html" class="text-white text-decoration-none">Profile</a>
-                </h6>
-            </div>
-        </div>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1)">
-            © 2020 Copyright: 2023 BCIT COMP1800
-        </div>
-    </footer>
+    <nav id="footerPlaceholder" class="fixed-bottom"></nav>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-    <script src="./scripts/firebaseAPI_TEAM99.js"></script>
+    <script src="./scripts/firebaseAPI_TEAM38.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/script.js"></script>
 
 </body>
 
