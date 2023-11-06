@@ -1,5 +1,8 @@
 body {
     background-color: aqua;
+
+    margin: 0px;
+    padding: 0px;
 }
 
 .content {
@@ -10,9 +13,4 @@ body {
 .content a {
     display: flex;
     justify-content: center;
-}
-
-.responsive {
-    width: 100%;
-    height: auto;
 }

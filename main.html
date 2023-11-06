@@ -19,18 +19,16 @@
   <!-- Other libraries go here -->
 
   <!-- Link to styles of your own -->
-  <link rel="stylesheet" href="styles/landingStyle.css">
-  <!-- <link rel="stylesheet" href="./styles/landingstyle.css"> -->
+  <link href="styles/main.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 
 </head>
 
 <body>
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
-  <!-- Stuff for body goes here -->
+ 
   <nav class="navbar navbar-expand-lg navbar-light bg-success">
     <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="images/CollecTraders.png" width="50"> CollecTraders</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -59,23 +57,30 @@
     </div>
   </nav>
 
-
-
-  <div class="mt-4">
-    <div class="container-fluid">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center">
-        <div class="jumbotron jumbotron-fluid">
-          <h1 class="display-4">Welcome!</h1>
-          <p class="lead">Sign up to start Selling and Buying!</p>
-          <hr class="my-4">
-          <p><a href="registering.html"><button type="button" class="btn btn-success">Sign Up</button> </a></p>
-
-        </div>
-      </div>
+  <div class="container">
+    <div class="featured">
+      <h1>Featured Item</h1>
+      <img src="https://dummyimage.com/600x400/000/fff" alt="featured item">
+      <div class="featuredName">Item Name Placeholder</div>
     </div>
+
+    <h3>Recently Viewed</h3>
+    <dir class="recentViewed">
+      <div class="viewedItem">
+        <img src="https://dummyimage.com/128x96/000/fff" alt="">
+        <div class="itemName">Item Name Here</div>
+      </div>
+      <div class="viewedItem">
+        <img src="https://dummyimage.com/128x96/000/fff" alt="">
+        <div class="itemName">Item Name Here</div>
+      </div>
+      <div class="viewedItem">
+        <img src="https://dummyimage.com/128x96/000/fff" alt="">
+        <div class="itemName">Item Name Here</div>
+      </div>
+    </dir>
+
   </div>
-
-
 
   <footer class="footer fixed-bottom bg-secondary h-5">
     <div class="row text-center d-flex justify-content-center pt-2">
@@ -84,25 +89,25 @@
           <a href="message.html" class="text-white text-decoration-none">Messaging</a>
         </h6>
       </div>
-
+  
       <div class="col-md-2">
         <h6 class="text-uppercase font-weight-bold">
           <a href="" class="text-white text-decoration-none">Listings</a>
         </h6>
       </div>
-
+  
       <div class="col-md-2">
         <h6 class="text-uppercase font-weight-bold">
           <a href="index.html" class="text-white text-decoration-none">Home</a>
         </h6>
       </div>
-
+  
       <div class="col-md-2">
         <h6 class="text-uppercase font-weight-bold">
           <a href="" class="text-white text-decoration-none">Bookmarks</a>
         </h6>
       </div>
-
+  
       <div class="col-md-2">
         <h6 class="text-uppercase font-weight-bold">
           <a href="profile.html" class="text-white text-decoration-none">Profile</a>
@@ -112,18 +117,10 @@
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1)">
       © 2020 Copyright: 2023 BCIT COMP1800
     </div>
-
-
   </footer>
 
 
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
-
-  <!-- Link to scripts of your own -->
-  <!-- <script src="./scripts/script.js"></script> -->
-
 </body>
+
 
 </html>
