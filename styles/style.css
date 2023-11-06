@@ -1,1 +1,13 @@
+body {
+    background-color: aqua;
+}
 
+.content {
+    display: grid;
+    justify-content: center;
+}
+
+.content a {
+    display: flex;
+    justify-content: center;
+}
