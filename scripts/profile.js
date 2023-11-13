@@ -1,7 +1,6 @@
 var currentUser;               //points to the document of the user who is logged in
-function populateUserInfo() {
+function UserInfo() {
     firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
         if (user) {
 
             //go to the correct user document by referencing to the user uid
@@ -17,6 +16,8 @@ function populateUserInfo() {
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
                         document.getElementById("nameInput").value = userName;
+                        document.getElementById("names").innerText = userName;
+                        
                     }
                     if (userAddress != null) {
                         document.getElementById("addressInput").value = userAddress;
@@ -36,27 +37,8 @@ function populateUserInfo() {
 }
 
 //call the function to run it 
-populateUserInfo();
+UserInfo();
 
-
-function saveUserInfo() {
-    //enter code here
-    
-    //a) get user entered values
-    userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    userAddress = document.getElementById('addressInput').value;     //get the value of the field with id="schoolInput"
-    userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
-    userInterests = document.getElementById('interests').value;
-    //b) update user's document in Firestore
-    currentUser.update({
-        name: userName,
-        address: userAddress,
-        city: userCity,
-        interests: userInterests
-    })
-    .then(() => {
-        console.log("Document successfully updated!");
-        window.location.assign("index.html");
-    })
-    //c) disable edit 
+function editUserInfo() {
+    window.location.assign("createProfile.html");
 }
