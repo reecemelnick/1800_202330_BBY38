@@ -12,7 +12,9 @@ var uiConfig = {
               email: user.email,                         //with authenticated user's ID (user.uid)
               country: "Canada",                      //optional default profile info      
               city: "Burnaby",
-              adress: ""                          //optional default profile info
+              address: "",
+              interests: ""
+
           }).then(function () {
               console.log("New user added to firestore");
               window.location.assign("createProfile.html");       //re-direct to main.html after signup

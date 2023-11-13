@@ -49,7 +49,7 @@
     <div class="container">
         <h1>User Profile </h1>
         <form>
-            <fieldset class="mb-3" id="personalInfoFields" disabled>
+            <fieldset class="mb-3" id="personalInfoFields">
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
@@ -58,12 +58,19 @@
                     <label>City</label>
                     <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
                 </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="addressInput" class="form-control" placeholder="Enter your address">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">What kind of items are you interested in?</label>
+                    <textarea class="form-control" id="interests" rows="3"></textarea>
+                </div>
             </fieldset>
             <div class="d-flex justify-content-end mt-5">
-                <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
-                <span style="width: 10px"></span>
-                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Saved</button>
             </div>
+            
         </form>
     </div>
 

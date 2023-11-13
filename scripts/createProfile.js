@@ -11,18 +11,21 @@ function populateUserInfo() {
                 .then(userDoc => {
                     //get the data fields of the user
                     var userName = userDoc.data().name;
-                    var userSchool = userDoc.data().school;
+                    var userAddress = userDoc.data().address;
                     var userCity = userDoc.data().city;
-
+                    var userInterests = userDoc.data().interests;
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
                         document.getElementById("nameInput").value = userName;
                     }
                     if (userSchool != null) {
-                        document.getElementById("schoolInput").value = userSchool;
+                        document.getElementById("addressInput").value = userAddress;
                     }
                     if (userCity != null) {
                         document.getElementById("cityInput").value = userCity;
+                    }
+                    if (userInterests != null) {
+                        document.getElementById("interests").value = userInterests;
                     }
                 })
         } else {
@@ -35,27 +38,25 @@ function populateUserInfo() {
 //call the function to run it 
 populateUserInfo();
 
-function editUserInfo() {
-    //Enable the form fields
-    document.getElementById('personalInfoFields').disabled = false;
-}
 
 function saveUserInfo() {
     //enter code here
     
     //a) get user entered values
     userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    userSchool = document.getElementById('schoolInput').value;     //get the value of the field with id="schoolInput"
+    userAddress = document.getElementById('addressInput').value;     //get the value of the field with id="schoolInput"
     userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+    userInterests = document.getElementById('interests').value;
     //b) update user's document in Firestore
     currentUser.update({
         name: userName,
-        school: userSchool,
-        city: userCity
+        address: userAddress,
+        city: userCity,
+        interests: userInterests
     })
     .then(() => {
         console.log("Document successfully updated!");
+        window.location.assign("index.html");
     })
     //c) disable edit 
-    document.getElementById('personalInfoFields').disabled = true;
 }
