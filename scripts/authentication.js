@@ -22,7 +22,8 @@ var uiConfig = {
               console.log("Error adding new user: " + error);
           });
       } else {
-          return true;
+          //console.log("bruh");
+          window.location.assign("main.html");
       }
       return false;
   },
