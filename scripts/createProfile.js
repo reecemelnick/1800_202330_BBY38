@@ -38,25 +38,59 @@ function populateUserInfo() {
 //call the function to run it 
 populateUserInfo();
 
+var ImageFile;      //global variable to store the File Object reference
+
+function chooseFileListener() {
+    const fileInput = document.getElementById("mypic-input");   // pointer #1
+    const image = document.getElementById("mypic-goes-here");   // pointer #2
+
+    //attach listener to input file
+    //when this file changes, do something
+    fileInput.addEventListener('change', function (e) {
+
+        //the change event returns a file "e.target.files[0]"
+        ImageFile = e.target.files[0];
+        var blob = URL.createObjectURL(ImageFile);
+
+        //change the DOM img element source to point to this file
+        image.src = blob;    //assign the "src" property of the "img" tag
+    })
+}
+chooseFileListener();
 
 function saveUserInfo() {
     //enter code here
-    
-    //a) get user entered values
-    userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    userAddress = document.getElementById('addressInput').value;     //get the value of the field with id="schoolInput"
-    userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
-    userInterests = document.getElementById('interests').value;
-    //b) update user's document in Firestore
-    currentUser.update({
-        name: userName,
-        address: userAddress,
-        city: userCity,
-        interests: userInterests
+    firebase.auth().onAuthStateChanged(function (user) {
+        var storageRef = storage.ref("images/" + user.uid + ".jpg");
+
+        //Asynch call to put File Object (global variable ImageFile) onto Cloud
+        storageRef.put(ImageFile)
+            .then(function () {
+                console.log('Uploaded to Cloud Storage.');
+
+                //Asynch call to get URL from Cloud
+                storageRef.getDownloadURL()
+                    .then(function (url) { // Get "url" of the uploaded file
+                        console.log("Got the download URL.");
+                        //a) get user entered values
+                        userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
+                        userAddress = document.getElementById('addressInput').value;     //get the value of the field with id="schoolInput"
+                        userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+                        userInterests = document.getElementById('interests').value;
+                        //b) update user's document in Firestore
+                        currentUser.update({
+                            name: userName,
+                            address: userAddress,
+                            city: userCity,
+                            interests: userInterests,
+                            profilePic: url
+                        })
+                            .then(() => {
+                                console.log("Document successfully updated!");
+                                window.location.assign("profile.html");
+                            })
+                        //c) disable edit 
+                    })
+            })
     })
-    .then(() => {
-        console.log("Document successfully updated!");
-        window.location.assign("index.html");
-    })
-    //c) disable edit 
 }
