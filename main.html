@@ -38,12 +38,30 @@
   <div class="container">
     <div class="featured">
       <h1>Featured Item</h1>
-      <img src="https://dummyimage.com/600x400/000/fff" alt="featured item">
-      <div class="featuredName">Item Name Placeholder</div>
+      <template id="featuredCardTemplate">
+        <div class="card py-2 mx-2" style="width: 35rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-price">placeholder</p>
+                <p class="card-type">type</p>
+                <p class="card-edition"></p>
+                <p class="card-condition"></p>
+                <br />
+                <p class="card-text"></p>
+                <p class="card-time"></p>
+                    
+      
+                <a class="btn btn-primary card-href">Buy</a>
+                <a class="btn btn-primary card-href">Message Seller</a>
+            </div>
+        </div>
+      </template>
+      <div id="listings-go-here"></div>
     </div>
 
     <h3>Recently Viewed</h3>
-    <dir class="recentViewed">
+    <div class="recentViewed">
       <div class="viewedItem">
         <img src="https://dummyimage.com/128x96/000/fff" alt="">
         <div class="itemName">Item Name Here</div>
@@ -62,13 +80,14 @@
         <p class="pb-5"></p>
         <p class="pb-5"></p>
       </div>
-    </dir>
+    </div>
 
   </div>
 
   <nav id="footerPlaceholder" class="fixed-bottom"></nav>
   <script src="./scripts/firebaseAPI_TEAM38.js"></script>
   <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/main.js"></script>
   
 </body>
 

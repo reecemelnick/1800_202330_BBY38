@@ -13,11 +13,10 @@ function UserInfo() {
                     var userAddress = userDoc.data().address;
                     var userCity = userDoc.data().city;
                     var userInterests = userDoc.data().interests;
+                    var profilePic = userDoc.data().profilePic;
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
                         document.getElementById("nameInput").value = userName;
-                        document.getElementById("names").innerText = userName;
-                        
                     }
                     if (userAddress != null) {
                         document.getElementById("addressInput").value = userAddress;
@@ -27,6 +26,14 @@ function UserInfo() {
                     }
                     if (userInterests != null) {
                         document.getElementById("interests").value = userInterests;
+                    }
+                    if (profilePic != null){
+                        console.log(profilePic);
+                                        // use this line if "mypicdiv" is a "div"
+                        //$("#mypicdiv").append("<img src='" + picUrl + "'>")
+                        $("#mypic-goes-here").attr("src", profilePic);
+                    } else {
+                        $("#mypic-goes-here").attr("src", "images/no-image-profile.jpg")
                     }
                 })
         } else {
