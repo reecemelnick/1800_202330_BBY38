@@ -40,8 +40,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     .material-icons {
-      font-size: 40px;
-      margin-bottom: 50px;
+      font-size: 50px;
     }
   </style>
 
@@ -71,42 +70,43 @@
       </div>
     </section>
 
-    <div class="container"> 
+    <div class="container">
       <h1>Listings</h1>
       <!-- Here is the container for cards  -->
       <div class="container">
-          <div id="hikes-go-here" class="row row-cols-auto">
-          </div>
+        <div id="hikes-go-here" class="row row-cols-auto">
+        </div>
       </div>
-</div>
+    </div>
 
-<!-- Templates for general use, not displayed -->
-<template id="listingCardTemplate">
-  <div class="card py-2 mx-2" style="width: 18rem">
-      <img class="card-image card-img-top" src=" ..." alt="..." />
-      <div class="card-body">
+    <!-- Templates for general use, not displayed -->
+    <template id="listingCardTemplate">
+      <div class="card py-2 mx-2" style="width: 18rem">
+        <img class="card-image card-img-top" src=" ..." alt="..." />
+        <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-price">placeholder</p>
+
           <br />
           <p class="card-text">
-              
+
           </p>
           <a class="btn btn-primary card-href">Buy</a>
           <a class="btn btn-primary card-href">Message Seller</a>
-          <i id="" onclick="saveBookMark(hikeID)" class="material-icons">bookmark_border</i>
+          <i id="" onclick="saveBookmark(listingID)" class="material-icons">bookmark_border</i>
+        </div>
       </div>
-  </div>
-</template>
+    </template>
 
 
-<div id="listings-go-here"></div>
+    <div id="listings-go-here"></div>
 
-<p class="pb-5"></p>
-<p class="pb-5"></p>
+    <p class="pb-5"></p>
+    <p class="pb-5"></p>
 
 
-    
-    
+
+
 
   </main>
 
@@ -120,7 +120,7 @@
   <script src="./scripts/firebaseAPI_TEAM38.js"></script>
   <script src="./scripts/skeleton.js"></script>
   <!-- <script src="./scripts/script.js"></script> -->
-  <script src ="./scripts/listings.js"></script>
+  <script src="./scripts/listings.js"></script>
 
 </body>
 
