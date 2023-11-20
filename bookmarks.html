@@ -23,6 +23,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
@@ -111,19 +112,10 @@
                     </li>
                     <li class="list-group-item py-3">
                         <div class="card-body form-group">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio3" id="btnradio7" autocomplete="off"
-                                    checked>
-                                <label class="btn btn-outline-primary" for="btnradio7">Good </label>
-
-                                <input type="radio" class="btn-check" name="btnradio3" id="btnradio8"
-                                    autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio8">Alright </label>
-
-                                <input type="radio" class="btn-check" name="btnradio3" id="btnradio9"
-                                    autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio9">Bad </label>
-                            </div>
+                            <button onclick="sortAscending()" class="btn btn-primary" type="button" id="sortAscending"> Ascending </button>
+                            <br>
+                            <br>
+                            <button onclick="sortDescending()" class="btn btn-primary" type="button" id="sortAscending"> descending </button>
                         </div>
                     </li>
                 </ul>
@@ -135,9 +127,18 @@
         <!-- Here is the container for cards  -->
         <div class="container">
             <div id="listings-go-here" class="row row-cols-auto">
+                <i id="noListings"></i>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <div class="container">
+            <div id="listings-temp" class="row row-cols-auto">
             </div>
         </div>
     </div>
+
 
     <template id="noBookmarks">
         <div class="mt-4">
