@@ -44,6 +44,8 @@
       vertical-align: bottom;
       font-size: 50px;
     }
+
+    
   </style>
 
 </head>
@@ -85,7 +87,7 @@
     
     
     <template id="listingCardTemplate">
-      <div class="card py-2 mx-2" style="width: 18rem">
+      <div class="card py-2 mx-2" style="width: 19rem">
         <img class="card-image card-img-top" src=" ..." alt="..." />
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -102,10 +104,13 @@
           <a class="btn btn-primary card-href">Message Seller</a>
           <i id="book" onclick="saveBookMark(hikeID)" class="inline-icon material-icons">bookmark_border</i>
         </div>
+      </div>
     </template>
 
-   
-     
+    <div class="container">
+      <div id="listings-go-here" class="row row-cols-auto"></div>
+    </div>
+    
 
     <p class="pb-5"></p>
     <p class="pb-5"></p>
