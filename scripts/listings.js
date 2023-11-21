@@ -67,15 +67,19 @@ function displayListingsDynamically(collection) {
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
-
-                currentUser.get().then(userDoc => {
-                    //get the user name
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                        document.getElementById('save-' + docID).innerText = 'bookmark';
+                firebase.auth().onAuthStateChanged(user => {
+                    if (user) {
+                        currentUser.get().then(userDoc => {
+                            //get the user name
+                            var bookmarks = userDoc.data().bookmarks;
+                            if (bookmarks.includes(docID)) {
+                                document.getElementById('save-' + docID).innerText = 'bookmark';
+                            }
+        
+                        })
                     }
-
                 })
+                
 
             });
         })
