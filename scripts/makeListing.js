@@ -8,7 +8,7 @@ function checkLogIn() {
             currentUser = db.collection("users").doc(user.uid)
         } else {
             console.log("No user is signed in");
-            window.location.href = "authenication.html";
+            window.location.href = "authentication.html";
         }
     })
 }
