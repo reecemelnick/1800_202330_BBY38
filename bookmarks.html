@@ -53,6 +53,10 @@
             vertical-align: bottom;
             font-size: 50px;
         }
+
+        #msg {
+            width: 71%;
+        }
     </style>
     <!-- <link rel="stylesheet" href="./styles/landingstyle.css"> -->
 
@@ -92,10 +96,8 @@
         </div>
     </nav>
     <div>
-        <h1>1</h1>
-        <h1>1</h1>
-        <h3>1</h3>
-        <h7>1</h7>
+        <p class="pb-4"></p>
+        <p class="pb-5"></p>
     </div>
     <div class="container">
         <h1>Listings</h1>
@@ -113,9 +115,9 @@
             </div>
         </div>
     </div>
- 
+    <p class="pb-4"></p>
     <template id="listingCardTemplate">
-        <div class="card py-2 mx-2" style="width: 19rem">
+        <div class="card py-2 mx-2" style="width: 21.5rem">
             <img class="card-image card-img-top" src=" ..." alt="..." />
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -126,9 +128,7 @@
                 <br />
                 <p class="card-text">
                 <p class="card-time"></p>
-                    
-                <a class="btn btn-primary card-href">Buy</a>
-                <a class="btn btn-primary card-href">Message Seller</a>
+                <a id="msg" class="btn btn-primary card-href">Message Seller</a>
                 <i id="book" onclick="saveBookMark(hikeID)" class="inline-icon material-icons">bookmark_border</i>
             </div>
         </div>
