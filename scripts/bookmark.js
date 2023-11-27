@@ -1,3 +1,6 @@
+
+var length = 3;
+
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -43,6 +46,7 @@ function getBookmarks(user) {
             console.log(bookmarks);
 
             if (bookmarks.length != 0) {
+                length = bookmarks.length;
                 bookmarks.forEach(thisListingID => {
                     //console.log(thisListingID);
 
@@ -79,19 +83,26 @@ function getBookmarks(user) {
 
                         newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
 
+                        newcard.querySelector('i').onclick = () => saveBookmark(docID);
+
                         console.log("------");
                         document.getElementById("listings-go-here").appendChild(newcard);
 
+                        firebase.auth().onAuthStateChanged(user => {
+                            if (user) {
+                                currentUser.get().then(userDoc => {
 
-                        currentUser.get().then(userDoc => {
-                            //get the user name
-                            var bookmarks = userDoc.data().bookmarks;
-                            if (bookmarks.includes(docID)) {
-                                document.getElementById('save-' + docID).innerText = 'bookmark';
+
+                                    var bookmarks = userDoc.data().bookmarks;
+                                    if (bookmarks.includes(docID)) {
+                                        document.getElementById('save-' + docID).innerText = 'bookmark';
+                                    } else {
+                                        document.getElementById("save-" + docID).innerText = "bookmark_border";
+                                    }
+
+                                });
                             }
-
                         })
-
                     });
                 })
             } else {
@@ -261,19 +272,255 @@ function sortDescend(user) {
 }
 
 
+function sortGameType() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            sortGame(user)
+            console.log(currentUser);
+        }
+    })
+}
+
+function sortGame(user) {
+    var gameArray = [];
+    //priceArray.push(10);
+    var count = 0;
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
+
+            var bookmarks = userDoc.data().bookmarks;
+            console.log(bookmarks);
+
+            if (bookmarks.length != 0) {
+                bookmarks.forEach(thisListingID => {
+                    console.log(thisListingID);
+
+                    db.collection("listings").doc(thisListingID).get().then(doc => {
+
+                        var type = (doc.data().type);
+                        console.log(type);
+
+                        if (type == "Game") {
+                            gameArray.push(thisListingID)
+                        }
+
+                        count += 1;
+                        if (count == bookmarks.length) {
+                            showCards(gameArray);
+                        }
+                    });
+                })
+            }
+
+        })
+        .catch(error => {
+            console.error("Error getting documents from Firestore:", error);
+        });
+}
+
+function sortToyType() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            sortToy(user)
+            console.log(currentUser);
+        }
+    })
+}
+
+function sortToy(user) {
+    var toyArray = [];
+    //priceArray.push(10);
+    var count = 0;
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
+
+            var bookmarks = userDoc.data().bookmarks;
+            console.log(bookmarks);
+
+            if (bookmarks.length != 0) {
+                bookmarks.forEach(thisListingID => {
+                    console.log(thisListingID);
+
+                    db.collection("listings").doc(thisListingID).get().then(doc => {
+
+                        var type = (doc.data().type);
+                        console.log(type);
+
+                        if (type == "Toy") {
+                            toyArray.push(thisListingID)
+                        }
+
+                        count += 1;
+                        if (count == bookmarks.length) {
+                            showCards(toyArray);
+                        }
+                    });
+                })
+            }
+
+        })
+        .catch(error => {
+            console.error("Error getting documents from Firestore:", error);
+        });
+}
+
+function sortCardType() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            sortCard(user)
+            console.log(currentUser);
+        }
+    })
+}
+
+function sortCard(user) {
+    var cardArray = [];
+    //priceArray.push(10);
+    var count = 0;
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
+
+            var bookmarks = userDoc.data().bookmarks;
+            console.log(bookmarks);
+
+            if (bookmarks.length != 0) {
+                bookmarks.forEach(thisListingID => {
+                    console.log(thisListingID);
+
+                    db.collection("listings").doc(thisListingID).get().then(doc => {
+
+                        var type = (doc.data().type);
+                        console.log(type);
+
+                        if (type == "Trading Card") {
+                            cardArray.push(thisListingID)
+                        }
+
+                        count += 1;
+                        if (count == bookmarks.length) {
+                            showCards(cardArray);
+                        }
+                    });
+                })
+            }
+
+        })
+        .catch(error => {
+            console.error("Error getting documents from Firestore:", error);
+        });
+}
+
+function sortModelType() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            sortModel(user)
+            console.log(currentUser);
+        }
+    })
+}
+
+function sortModel(user) {
+    var modelArray = [];
+    //priceArray.push(10);
+    var count = 0;
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
+
+            var bookmarks = userDoc.data().bookmarks;
+            console.log(bookmarks);
+
+            if (bookmarks.length != 0) {
+                bookmarks.forEach(thisListingID => {
+                    console.log(thisListingID);
+
+                    db.collection("listings").doc(thisListingID).get().then(doc => {
+
+                        var type = (doc.data().type);
+                        console.log(type);
+
+                        if (type == "Model") {
+                            modelArray.push(thisListingID)
+                        }
+
+                        count += 1;
+                        if (count == bookmarks.length) {
+                            showCards(modelArray);
+                        }
+                    });
+                })
+            }
+
+        })
+        .catch(error => {
+            console.error("Error getting documents from Firestore:", error);
+        });
+}
+
+function sortOtherType() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            sortOther(user)
+            console.log(currentUser);
+        }
+    })
+}
+
+function sortOther(user) {
+    var otherArray = [];
+    //priceArray.push(10);
+    var count = 0;
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
+
+            var bookmarks = userDoc.data().bookmarks;
+            console.log(bookmarks);
+
+            if (bookmarks.length != 0) {
+                bookmarks.forEach(thisListingID => {
+                    console.log(thisListingID);
+
+                    db.collection("listings").doc(thisListingID).get().then(doc => {
+
+                        var type = (doc.data().type);
+                        console.log(type);
+
+                        if (type == "Other") {
+                            otherArray.push(thisListingID)
+                        }
+
+                        count += 1;
+                        if (count == bookmarks.length) {
+                            showCards(otherArray);
+                        }
+                    });
+                })
+            }
+
+        })
+        .catch(error => {
+            console.error("Error getting documents from Firestore:", error);
+        });
+}
 
 function showCards(array) {
     let listingTemplate = document.getElementById("listingCardTemplate");
     console.log(array);
-    
-        
-    for (let x = 0;x < array.length;x++) {
-        
+
+
+    for (let x = 0; x < length; x++) {
+
         document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
         console.log(x);
-        
+
     }
-    
+
+    length = array.length;
+
     for (let i = 0; i < array.length; i++) {
         console.log("-------------");
         db.collection("listings").doc(array[i]).get().then(doc => {
@@ -308,17 +555,53 @@ function showCards(array) {
 
             newcard1.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
 
-            console.log("bub");
-
-            
-
-            console.log("bubs");
+            newcard1.querySelector('i').onclick = () => saveBookmark(docID);
 
             document.getElementById("listings-go-here").appendChild(newcard1);
 
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    currentUser.get().then(userDoc => {
 
-            document.getElementById('save-' + docID).innerText = 'bookmark';
+
+                        var bookmarks = userDoc.data().bookmarks;
+                        if (bookmarks.includes(docID)) {
+                            document.getElementById('save-' + docID).innerText = 'bookmark';
+                        } else {
+                            document.getElementById("save-" + docID).innerText = "bookmark_border";
+                        }
+
+                    });
+                }
+            })
 
         })
     }
+}
+
+
+
+function saveBookmark(listingDocID) {
+    currentUser.get().then(userDoc => {
+        let bookmarks = userDoc.data().bookmarks;
+        let iconID = "save-" + listingDocID;
+        let isBookmarked = bookmarks.includes(listingDocID);
+
+        if (isBookmarked) {
+            currentUser.update({
+                bookmarks: firebase.firestore.FieldValue.arrayRemove(listingDocID)
+            }).then(() => {
+                console.log("Bookmark removed for " + listingDocID);
+                document.getElementById(iconID).innerText = "bookmark_border";
+            });
+        } else {
+            currentUser.update({
+                bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
+            }).then(function () {
+                console.log("bookmark has been saved for" + listingDocID);
+                document.getElementById(iconID).innerText = 'bookmark';
+            });
+        }
+    })
+
 }

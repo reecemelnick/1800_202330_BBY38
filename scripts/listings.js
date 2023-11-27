@@ -65,21 +65,24 @@ function displayListingsDynamically(collection) {
 
                 newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
-                document.getElementById(collection + "-go-here").appendChild(newcard);
 
                 firebase.auth().onAuthStateChanged(user => {
                     if (user) {
                         currentUser.get().then(userDoc => {
-                            //get the user name
+
+
                             var bookmarks = userDoc.data().bookmarks;
                             if (bookmarks.includes(docID)) {
                                 document.getElementById('save-' + docID).innerText = 'bookmark';
+                            } else {
+                                document.getElementById("save-" + docID).innerText = "bookmark_border";
                             }
-        
-                        })
+
+                        });
                     }
                 })
-                
+
+                document.getElementById(collection + "-go-here").appendChild(newcard);
 
             });
         })
@@ -94,18 +97,27 @@ displayListingsDynamically("listings");
 
 
 function saveBookmark(listingDocID) {
-    // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
-    currentUser.update({
-        // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
-        // This method ensures that the ID is added only if it's not already present, preventing duplicates.
-        bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
+
+    currentUser.get().then(userDoc => {
+        let bookmarks = userDoc.data().bookmarks;
+        let iconID = "save-" + listingDocID;
+        let isBookmarked = bookmarks.includes(listingDocID);
+
+        if (isBookmarked) {
+            currentUser.update({
+                bookmarks: firebase.firestore.FieldValue.arrayRemove(listingDocID)
+            }).then(() => {
+                console.log("Bookmark removed for " + listingDocID);
+                document.getElementById(iconID).innerText = "bookmark_border";
+            });
+        } else {
+            currentUser.update({
+                bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
+            }).then(function () {
+                console.log("bookmark has been saved for" + listingDocID);
+                document.getElementById(iconID).innerText = 'bookmark';
+            });
+        }
     })
-        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
-        .then(function () {
-            console.log("bookmark has been saved for" + listingDocID);
-            var iconID = 'save-' + listingDocID;
-            //console.log(iconID);
-            //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'bookmark';
-        });
+
 }

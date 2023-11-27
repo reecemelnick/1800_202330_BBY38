@@ -51,9 +51,10 @@ function makeListing() {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
         console.log("1. Post document added!");
-                   console.log(doc.id);
+        console.log(doc.id);
         uploadPic(doc.id);
     });
+
     // } else {
     // console.log("No user is signed in");
     // window.location.href = 'makeListing.html';
