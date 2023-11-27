@@ -94,6 +94,10 @@ function displayListingsDynamically(collection) {
 // Example: Call the function with the "listings" collection
 displayListingsDynamically("listings");
 
+function goToDetailsPage(listingDocID) {
+    // Navigate to the details page with the specific listing ID
+    window.location.href = 'viewListing.html?id=' + listingDocID; // Adjust the URL as needed
+}
 
 
 function saveBookmark(listingDocID) {
@@ -119,5 +123,14 @@ function saveBookmark(listingDocID) {
             });
         }
     })
-
+        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
+        .then(function () {
+            console.log("bookmark has been saved for" + listingDocID);
+            var iconID = 'save-' + listingDocID;
+            //console.log(iconID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'bookmark';
+        });
 }
+
+newcard.querySelector('#msg-sell').onclick = () => goToDetailsPage(docID);
