@@ -1,5 +1,5 @@
 
-var length = 3;
+var length = 0;
 
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {

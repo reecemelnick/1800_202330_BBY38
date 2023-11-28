@@ -39,6 +39,8 @@
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <!-- <link rel="stylesheet" href="./styles/style.css"> -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <style>
     #msg-sell {
       width: 100%;
@@ -46,6 +48,22 @@
 
     body {
       background-color: lightblue;
+    }
+
+    .filter {
+      vertical-align: bottom;
+      font-size: 30px;
+
+    }
+
+    .drop {
+      margin-left: 123px;
+    }
+
+    #big {
+      vertical-align: bottom;
+      font-size: 40px;
+      margin-left: 22px;
     }
   </style>
 
@@ -65,11 +83,24 @@
   <p class="pb-5"></p>
   <p class="pb-4"></p>
   <main role="main">
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Listings</h1>
-      </div>
-    </section>
+    <div class="dropdown">
+
+      <span id="big">Listings</span>
+      <button class="drop btn btn-secondary dropdown-toggle" type="button" id="dropdown1" data-bs-toggle="dropdown"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="material-symbols-outlined">tune</span>
+      </button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdown1">
+        <li><a class="dropdown-item" onclick="sortAscending()" href="#">ascending price</a></li>
+        <li><a class="dropdown-item" onclick="sortDescending()" href="#">descending price</a></li>
+        <li><a class="dropdown-item" onclick="sortGameType()" href="#">Game type</a></li>
+        <li><a class="dropdown-item" onclick="sortToyType()" href="#">Toy type</a></li>
+        <li><a class="dropdown-item" onclick="sortCardType()" href="#">Card type</a></li>
+        <li><a class="dropdown-item" onclick="sortModelType()" href="#">Model type</a></li>
+        <li><a class="dropdown-item" onclick="sortOtherType()" href="#">Other type</a></li>
+      </ul>
+    </div>
 
     <div class="container">
       <!-- Here is the container for cards  -->
@@ -96,7 +127,8 @@
           <p class="card-time"></p>
 
           </p>
-          <a class="btn btn-primary card-href" href="#" onclick="goToDetailsPage('{{docID}}')" id="msg-sell">Message Seller</a>
+          <a class="btn btn-primary card-href" href="#" onclick="goToDetailsPage('{{docID}}')" id="msg-sell">Message
+            Seller</a>
           <i id="book" onclick="saveBookMark(hikeID)" class="inline-icon material-icons">bookmark_border</i>
         </div>
       </div>
@@ -109,10 +141,6 @@
 
     <p class="pb-5"></p>
     <p class="pb-5"></p>
-
-
-
-
 
   </main>
 
