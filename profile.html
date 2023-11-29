@@ -28,7 +28,13 @@
 
   <style>
     body {
-      background: #F1F3FA;
+      background: lightblue;
+    }
+
+    #big {
+      vertical-align: bottom;
+      font-size: 40px;
+      margin-left: 10px;
     }
 
     /* Profile container */
@@ -144,11 +150,16 @@
 </head>
 
 <body>
-  
+
   <p class="pb-3"></p>
   <nav id="navbarPlaceholder"></nav>
-  <p class="pb-5"></p>
   <p class="pb-4"></p>
+  <p class="pb-4"></p>
+
+  <div class="container">
+    <span id="big">Profile</span>
+  </div>
+
   <div class="container">
     <div class="row profile">
       <div class="col-md-3">
@@ -172,25 +183,25 @@
         <div class="profile-content">
           <fieldset class="mb-3" id="personalInfoFields" disabled>
             <div class="form-group">
-                <label>Name</label>
-                <input type="text" id="nameInput" class="form-control" placeholder="No name">
+              <label>Name</label>
+              <input type="text" id="nameInput" class="form-control" placeholder="No name">
             </div>
             <div class="form-group">
-                <label>City</label>
-                <input type="text" id="cityInput" class="form-control" placeholder="No city">
+              <label>City</label>
+              <input type="text" id="cityInput" class="form-control" placeholder="No city">
             </div>
             <div class="form-group">
-                <label>Address</label>
-                <input type="text" id="addressInput" class="form-control" placeholder="No address">
+              <label>Address</label>
+              <input type="text" id="addressInput" class="form-control" placeholder="No address">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Interests</label>
-                <textarea class="form-control" id="interests" rows="3" placeholder="No interests"></textarea>
+              <label for="exampleFormControlTextarea1">Interests</label>
+              <textarea class="form-control" id="interests" rows="3" placeholder="No interests"></textarea>
             </div>
-        </fieldset>
-        <div class="d-flex justify-content-end mt-5">
-          <button type="button" class="btn btn-info" onclick="editUserInfo()">Edit</button>
-        </div>
+          </fieldset>
+          <div class="d-flex justify-content-end mt-5">
+            <button type="button" class="btn btn-info" onclick="editUserInfo()">Edit</button>
+          </div>
         </div>
       </div>
     </div>
@@ -198,6 +209,37 @@
   <br>
   <br>
 
+  <div class="container">
+    <span id="big">My Listings</span>
+  </div>
+
+  <div class="container">
+    <div class="container">
+      <div id="listings-go-here" class="row row-cols-auto">
+        <i id="noListings"></i>
+      </div>
+    </div>
+  </div>
+
+  <template id="listingCardTemplate">
+    <div class="card py-2 mx-2" style="width: 21.5rem">
+      <img class="card-image card-img-top" src=" ..." alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-price">placeholder</p>
+        <p class="card-type">type</p>
+        <p class="card-edition"></p>
+        <p class="card-condition"></p>
+        <br />
+        <p class="card-text">
+        <p class="card-time"></p>
+        <a id="msg" class="btn btn-primary card-href">Message Seller</a>
+        <i id="book" class="inline-icon material-icons">bookmark_border</i>
+      </div>
+    </div>
+  </template>
+
+  <p class="pb-5"></p>
   <p class="pb-5"></p>
 
   <nav id="footerPlaceholder" class="fixed-bottom"></nav>
