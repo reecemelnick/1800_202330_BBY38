@@ -97,10 +97,7 @@ function displayListingsDynamically(collection) {
 // Example: Call the function with the "listings" collection
 displayListingsDynamically("listings");
 
-function goToDetailsPage(listingDocID) {
-    // Navigate to the details page with the specific listing ID
-    window.location.href = 'viewListing.html?id=' + listingDocID; // Adjust the URL as needed
-}
+
 
 
 function saveBookmark(listingDocID) {
@@ -136,7 +133,6 @@ function saveBookmark(listingDocID) {
         });
 }
 
-newcard.querySelector('#msg-sell').onclick = () => goToDetailsPage(docID);
 
 
 
