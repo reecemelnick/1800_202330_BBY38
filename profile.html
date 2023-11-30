@@ -24,7 +24,8 @@
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <style>
     body {
@@ -35,6 +36,11 @@
       vertical-align: bottom;
       font-size: 40px;
       margin-left: 10px;
+    }
+
+    .inline-icon {
+      vertical-align: bottom;
+      font-size: 50px;
     }
 
     /* Profile container */
@@ -235,6 +241,7 @@
         <p class="card-time"></p>
         <a id="msg" class="btn btn-primary card-href">Message Seller</a>
         <i id="book" class="inline-icon material-icons">bookmark_border</i>
+        <strong id="trash" class="inline-icon material-symbols-outlined">delete</strong>
       </div>
     </div>
   </template>

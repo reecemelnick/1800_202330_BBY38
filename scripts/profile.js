@@ -54,6 +54,7 @@ function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             //insertNameFromFirestore(user);
+
             getBookmarks(user)
 
         } else {
@@ -65,9 +66,19 @@ function doAll() {
 }
 
 doAll()
+document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
 
+var lengths = 0;
 var currentUser;
 function getBookmarks(user) {
+    for (let x = 0; x < lengths; x++) {
+
+        document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
+
+    }
+
+    console.log(lengths);
+
     let listingTemplate = document.getElementById("listingCardTemplate");
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -81,9 +92,10 @@ function getBookmarks(user) {
 
             var myposts = userDoc.data().myposts;
             console.log(myposts);
+            lengths = myposts.length;
 
             if (myposts.length != 0) {
-                length = myposts.length;
+
                 myposts.forEach(thisListingID => {
                     //console.log(thisListingID);
 
@@ -122,6 +134,8 @@ function getBookmarks(user) {
 
                         newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
+                        newcard.querySelector('strong').onclick = () => deletePost(docID);
+
                         console.log("------");
                         document.getElementById("listings-go-here").appendChild(newcard);
 
@@ -151,7 +165,64 @@ function getBookmarks(user) {
         .catch(error => {
             console.error("Error getting documents from Firestore:", error);
         });
+
+    console.log(lengths);
 }
+
+function deletePost(listingid) {
+    var result = confirm("Want to delete?");
+    if (result) {
+        db.collection("listings").doc(listingid)
+            .delete()
+            .then(() => {
+                console.log("1. Document deleted from Posts collection");
+                deleteFromMyPosts(listingid);
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+    }
+}
+
+
+function deleteFromMyPosts(postid) {
+    firebase.auth().onAuthStateChanged(user => {
+        db.collection("users").doc(user.uid).update({
+            myposts: firebase.firestore.FieldValue.arrayRemove(postid)
+        })
+            .then(() => {
+                console.log("2. post deleted from user doc");
+                deleteFromSaves(postid);
+
+                doAll();
+            })
+    })
+}
+
+function deleteFromSaves(listingid) {
+    
+        db.collection("users").get()
+            .then(allUsers => {
+                allUsers.forEach(userDoc => {
+
+                    var bookmarks = userDoc.data().bookmarks;
+                    console.log(bookmarks);
+
+                    if (bookmarks.length != 0) {
+                        let bookmarks = userDoc.data().bookmarks;
+                        let isBookmarked = bookmarks.includes(listingid);
+
+
+                        if (isBookmarked) {
+                            currentUser.update({
+                                bookmarks: firebase.firestore.FieldValue.arrayRemove(listingid)
+                            })
+                        }
+                    }
+                })
+            })
+    
+}
+
 
 function saveBookmark(listingDocID) {
     currentUser.get().then(userDoc => {
