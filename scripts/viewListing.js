@@ -1,30 +1,37 @@
 function displayHikeInfo() {
     let params = new URL( window.location.href ); //get URL of search bar
     let ID = params.searchParams.get( "docID" ); //get value for key "id"
+    
     console.log( ID );
 
     // doublecheck: is your collection called "Reviews" or "reviews"?
+   
+   
     db.collection( "listings" )
         .doc( ID )
         .get()
         .then( doc => {
             thisListing = doc.data();
-            listingCode = thisListing.code;
-            ListingName = doc.data().title;
+            listingPrice = doc.data().price;
+            listingCode = doc.data().code;
+            listingName = doc.data().name;
             
+           
+
             // only populate title, and image
-            document.getElementById( "listingName" ).innerHTML = listingName;
-            let imgEvent = document.querySelector( ".hike-img" );
-            imgEvent.src = "./images/" + ListingCode + ".jpg";
+            document.getElementById( "listingName" ).innerHTML = "Item information: " + "<br>" +  "<br>" + listingName + " $" + listingPrice; 
+
+           
         } );
 }
 displayHikeInfo();
+
 
 // function saveHikeDocumentIDAndRedirect(){
 //     let params = new URL(window.location.href) //get the url from the search bar
 //     let ID = params.searchParams.get("docID");
 //     localStorage.setItem('listingDocID', ID);
-//     window.location.href = 'review.html';
+//     window.location.href = 'viewListing.html';
 // }
 
 // Add this JavaScript code to make stars clickable

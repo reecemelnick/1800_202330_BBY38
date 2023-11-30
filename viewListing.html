@@ -23,7 +23,9 @@
 
     <!-- Additional Styles -->
     <style>
-        /* Add your custom styles here */
+        body {
+          background-color: lightblue;
+        }
     </style>
 
 </head>
@@ -33,11 +35,12 @@
     <!-- Navbar Placeholder -->
     <nav id="navbarPlaceholder"></nav>
     
+    <p class="py-5"></p>
+
     <div class="container">
-      <h1><span id="listingName">this hike</span></h1>
+      <h1><span id="listingName"></span></h1>
+      <img class="hike-img responsive" src="" alt="Listing Photo">
       <div class="position-relative">
-          <img class="hike-img responsive" src="" alt="Hike photo">
-          <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="saveHikeDocumentIDAndRedirect()">Write Review</button>
       </div>
   </div>
     <!-- Footer Placeholder -->

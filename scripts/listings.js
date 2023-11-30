@@ -63,6 +63,7 @@ function displayListingsDynamically(collection) {
                     newcard.querySelector('.card-time').innerHTML = "Timestamp not available";
                 }
                 newcard.querySelector('.card-image').src = `./images/${listingCode}.jpg`;
+                newcard.querySelector('a').href = "viewListing.html?docID="+docID;
 
                 newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
 
