@@ -478,15 +478,15 @@ function sortOther(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    console.log(thisListingID);
+                    
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
-
-                        var type = (doc.data().type);
+                        console.log(thisListingID);
+                        console.log(otherArray);
+                        var type = doc.data().type;
                         console.log(type);
 
                         if (type == "Other") {
