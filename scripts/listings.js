@@ -12,7 +12,7 @@ function addListing() {
         details: "Good",
     })
         .then((docRef) => {
-            console.log('Document written with ID:', docRef.id);
+            //console.log('Document written with ID:', docRef.id);
         })
         .catch((error) => {
             console.error('Error adding document:', error);
@@ -31,7 +31,7 @@ function displayListingsDynamically(collection) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             currentUser = db.collection("users").doc(user.uid); //global
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 
@@ -112,21 +112,21 @@ function saveBookmark(listingDocID) {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayRemove(listingDocID)
             }).then(() => {
-                console.log("Bookmark removed for " + listingDocID);
+                //console.log("Bookmark removed for " + listingDocID);
                 document.getElementById(iconID).innerText = "bookmark_border";
             });
         } else {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
             }).then(function () {
-                console.log("bookmark has been saved for" + listingDocID);
+                //console.log("bookmark has been saved for" + listingDocID);
                 document.getElementById(iconID).innerText = 'bookmark';
             });
         }
     })
         // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
         .then(function () {
-            console.log("bookmark has been saved for" + listingDocID);
+            //console.log("bookmark has been saved for" + listingDocID);
             var iconID = 'save-' + listingDocID;
             //console.log(iconID);
             //this is to change the icon of the hike that was saved to "filled"
@@ -142,7 +142,7 @@ function sortAscending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortAscend(user)
-            console.log(currentUser);
+            //console.log(currentUser);
 
         }
     })
@@ -190,12 +190,12 @@ function sortAscend(user) {
                     idArray.push(doc.id);
                 }
 
-                console.log(priceArray);
-                console.log(idArray);
+                //console.log(priceArray);
+                //console.log(idArray);
 
                 if (count == listingLength) {
                     showCards(idArray);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -206,7 +206,7 @@ function sortDescending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortDescend(user)
-            console.log(currentUser);
+            //console.log(currentUser);
 
         }
     })
@@ -254,12 +254,12 @@ function sortDescend(user) {
                     idArray.push(doc.id);
                 }
 
-                console.log(priceArray);
-                console.log(idArray);
+                //console.log(priceArray);
+                //console.log(idArray);
 
                 if (count == listingLength) {
                     showCards(idArray);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -270,7 +270,7 @@ function sortGameType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortGame(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -290,10 +290,10 @@ function sortGame(user) {
                     Array.push(doc.id)
                 }
                
-                console.log(Array);
+                //console.log(Array);
                 if (count == listingLength) {
                     showCards(Array);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -303,7 +303,7 @@ function sortToyType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortToy(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -323,10 +323,10 @@ function sortToy(user) {
                     Array.push(doc.id)
                 }
                
-                console.log(Array);
+                //console.log(Array);
                 if (count == listingLength) {
                     showCards(Array);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -336,7 +336,7 @@ function sortCardType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortCard(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -356,10 +356,10 @@ function sortCard(user) {
                     Array.push(doc.id)
                 }
                
-                console.log(Array);
+                //console.log(Array);
                 if (count == listingLength) {
                     showCards(Array);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -369,7 +369,7 @@ function sortModelType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortModel(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -389,10 +389,10 @@ function sortModel(user) {
                     Array.push(doc.id)
                 }
                
-                console.log(Array);
+                //console.log(Array);
                 if (count == listingLength) {
                     showCards(Array);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -402,7 +402,7 @@ function sortOtherType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortOther(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -422,10 +422,10 @@ function sortOther(user) {
                     Array.push(doc.id)
                 }
                
-                console.log(Array);
+                //console.log(Array);
                 if (count == listingLength) {
                     showCards(Array);
-                    console.log("heyhey");
+                    //console.log("heyhey");
                 }
             })
         })
@@ -433,20 +433,20 @@ function sortOther(user) {
 
 function showCards(array) {
     let listingTemplate = document.getElementById("listingCardTemplate");
-    console.log(array);
+    //console.log(array);
 
 
     for (let x = 0; x < length; x++) {
 
         document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
-        console.log(x);
+        //console.log(x);
 
     }
 
     length = array.length;
 
     for (let i = 0; i < array.length; i++) {
-        console.log("-------------");
+        //console.log("-------------");
         db.collection("listings").doc(array[i]).get().then(doc => {
             var title = doc.data().name;
             var details = doc.data().details;

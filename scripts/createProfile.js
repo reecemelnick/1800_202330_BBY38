@@ -30,7 +30,7 @@ function populateUserInfo() {
                 })
         } else {
             // No user is signed in.
-            console.log("No user is signed in");
+            //console.log("No user is signed in");
         }
     });
 }
@@ -66,12 +66,12 @@ function saveUserInfo() {
         //Asynch call to put File Object (global variable ImageFile) onto Cloud
         storageRef.put(ImageFile)
             .then(function () {
-                console.log('Uploaded to Cloud Storage.');
+                //console.log('Uploaded to Cloud Storage.');
 
                 //Asynch call to get URL from Cloud
                 storageRef.getDownloadURL()
                     .then(function (url) { // Get "url" of the uploaded file
-                        console.log("Got the download URL.");
+                        //console.log("Got the download URL.");
                         //a) get user entered values
                         userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
                         userAddress = document.getElementById('addressInput').value;     //get the value of the field with id="schoolInput"
@@ -86,7 +86,7 @@ function saveUserInfo() {
                             profilePic: url
                         })
                             .then(() => {
-                                console.log("Document successfully updated!");
+                                //console.log("Document successfully updated!");
                                 window.location.assign("profile.html");
                             })
                         //c) disable edit 

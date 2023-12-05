@@ -28,7 +28,7 @@ function UserInfo() {
                         document.getElementById("interests").value = userInterests;
                     }
                     if (profilePic != null) {
-                        console.log(profilePic);
+                        //console.log(profilePic);
                         // use this line if "mypicdiv" is a "div"
                         //$("#mypicdiv").append("<img src='" + picUrl + "'>")
                         $("#mypic-goes-here").attr("src", profilePic);
@@ -58,9 +58,9 @@ function doAll() {
             getBookmarks(user)
 
         } else {
-            console.log("hehe");
+            //console.log("hehe");
             document.getElementById("noListings").innerText = "No Bookmarks";
-            console.log("No user is signed in");
+            //console.log("No user is signed in");
         }
     });
 }
@@ -77,13 +77,13 @@ function getBookmarks(user) {
 
     }
 
-    console.log(lengths);
+    //console.log(lengths);
 
     let listingTemplate = document.getElementById("listingCardTemplate");
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             currentUser = db.collection("users").doc(user.uid); //global
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 
@@ -91,7 +91,7 @@ function getBookmarks(user) {
         .then(userDoc => {
 
             var myposts = userDoc.data().myposts;
-            console.log(myposts);
+            //console.log(myposts);
             lengths = myposts.length;
 
             if (myposts.length != 0) {
@@ -136,7 +136,7 @@ function getBookmarks(user) {
 
                         newcard.querySelector('strong').onclick = () => deletePost(docID);
 
-                        console.log("------");
+                        //console.log("------");
                         document.getElementById("listings-go-here").appendChild(newcard);
 
                         firebase.auth().onAuthStateChanged(user => {
@@ -157,7 +157,7 @@ function getBookmarks(user) {
                     });
                 })
             } else {
-                console.log("hehe");
+                //console.log("hehe");
                 document.getElementById("noListings").value("No posts");
             }
 
@@ -166,7 +166,7 @@ function getBookmarks(user) {
             console.error("Error getting documents from Firestore:", error);
         });
 
-    console.log(lengths);
+    //console.log(lengths);
 }
 
 function deletePost(listingid) {
@@ -175,7 +175,7 @@ function deletePost(listingid) {
         db.collection("listings").doc(listingid)
             .delete()
             .then(() => {
-                console.log("1. Document deleted from Posts collection");
+                //console.log("1. Document deleted from Posts collection");
                 deleteFromMyPosts(listingid);
             }).catch((error) => {
                 console.error("Error removing document: ", error);
@@ -190,7 +190,7 @@ function deleteFromMyPosts(postid) {
             myposts: firebase.firestore.FieldValue.arrayRemove(postid)
         })
             .then(() => {
-                console.log("2. post deleted from user doc");
+                //console.log("2. post deleted from user doc");
                 deleteFromSaves(postid);
 
                 doAll();
@@ -205,7 +205,7 @@ function deleteFromSaves(listingid) {
                 allUsers.forEach(userDoc => {
 
                     var bookmarks = userDoc.data().bookmarks;
-                    console.log(bookmarks);
+                    //console.log(bookmarks);
 
                     if (bookmarks.length != 0) {
                         let bookmarks = userDoc.data().bookmarks;

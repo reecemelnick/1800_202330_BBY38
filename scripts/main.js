@@ -34,7 +34,7 @@ function displayListingsDynamically(collection) {
 
                 listingsContainer.appendChild(newcard);
             } else {
-                console.log("No listings found.");
+                //console.log("No listings found.");
             }
         })
         .catch(error => {

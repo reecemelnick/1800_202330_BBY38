@@ -8,9 +8,9 @@ function doAll() {
             getBookmarks(user)
 
         } else {
-            console.log("hehe");
+            //console.log("hehe");
             document.getElementById("noListings").innerText = "No Bookmarks";
-            console.log("No user is signed in");
+            //console.log("No user is signed in");
         }
     });
 }
@@ -21,9 +21,9 @@ document.getElementById("listings-go-here").removeChild(document.getElementById(
 
 function insertNameFromFirestore(user) {
     db.collection("users").doc(user.uid).get().then(userDoc => {
-        console.log(userDoc.data().name)
+        //console.log(userDoc.data().name)
         userName = userDoc.data().name;
-        console.log(userName)
+        //console.log(userName)
         document.getElementById("name-goes-here").innerHTML = userName;
     })
 
@@ -35,7 +35,7 @@ function getBookmarks(user) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             currentUser = db.collection("users").doc(user.uid); //global
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 
@@ -43,7 +43,7 @@ function getBookmarks(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 length = bookmarks.length;
@@ -85,7 +85,7 @@ function getBookmarks(user) {
 
                         newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
-                        console.log("------");
+                        //console.log("------");
                         document.getElementById("listings-go-here").appendChild(newcard);
 
                         firebase.auth().onAuthStateChanged(user => {
@@ -106,7 +106,7 @@ function getBookmarks(user) {
                     });
                 })
             } else {
-                console.log("hehe");
+                //console.log("hehe");
                 document.getElementById("noListings").value("No Bookmarks");
             }
 
@@ -120,7 +120,7 @@ function sortAscending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortAscend(user)
-            console.log(currentUser);
+            //console.log(currentUser);
 
         }
     })
@@ -136,7 +136,7 @@ function sortAscend(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
@@ -144,7 +144,7 @@ function sortAscend(user) {
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
                         var listingPrice = Number(doc.data().price);
-                        console.log(listingPrice);
+                        //console.log(listingPrice);
                         var flag = false;
 
                         for (let i = 0; i < priceArray.length; i++) {
@@ -174,11 +174,11 @@ function sortAscend(user) {
                             priceArray.push(listingPrice);
                             idArray.push(thisListingID);
                         }
-                        console.log(priceArray);
-                        console.log(idArray);
+                        //console.log(priceArray);
+                        //console.log(idArray);
                         if (idArray.length == bookmarks.length) {
                             showCards(idArray);
-                            console.log("heyhey");
+                            //console.log("heyhey");
                         }
                     });
                 })
@@ -198,7 +198,7 @@ function sortDescending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortDescend(user)
-            console.log(currentUser);
+            //console.log(currentUser);
 
         }
     })
@@ -214,15 +214,15 @@ function sortDescend(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    console.log(thisListingID);
+                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
                         var listingPrice = Number(doc.data().price);
-                        console.log(listingPrice);
+                        //console.log(listingPrice);
                         var flag = false;
 
                         for (let i = 0; i < priceArray.length; i++) {
@@ -252,11 +252,11 @@ function sortDescend(user) {
                             priceArray.push(listingPrice);
                             idArray.push(thisListingID);
                         }
-                        console.log(priceArray);
-                        console.log(idArray);
+                        //console.log(priceArray);
+                        //console.log(idArray);
                         if (idArray.length == bookmarks.length) {
                             showCards(idArray);
-                            console.log("heyhey");
+                            //console.log("heyhey");
                         }
                     });
                 })
@@ -276,7 +276,7 @@ function sortGameType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortGame(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -290,16 +290,16 @@ function sortGame(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    console.log(thisListingID);
+                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
 
                         var type = (doc.data().type);
-                        console.log(type);
+                        //console.log(type);
 
                         if (type == "Game") {
                             gameArray.push(thisListingID)
@@ -323,7 +323,7 @@ function sortToyType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortToy(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -337,16 +337,16 @@ function sortToy(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    console.log(thisListingID);
+                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
 
                         var type = (doc.data().type);
-                        console.log(type);
+                        //console.log(type);
 
                         if (type == "Toy") {
                             toyArray.push(thisListingID)
@@ -370,7 +370,7 @@ function sortCardType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortCard(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -384,16 +384,16 @@ function sortCard(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    console.log(thisListingID);
+                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
 
                         var type = (doc.data().type);
-                        console.log(type);
+                        //console.log(type);
 
                         if (type == "Trading Card") {
                             cardArray.push(thisListingID)
@@ -417,7 +417,7 @@ function sortModelType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortModel(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -431,16 +431,16 @@ function sortModel(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            console.log(bookmarks);
+            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    console.log(thisListingID);
+                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
 
                         var type = (doc.data().type);
-                        console.log(type);
+                        //console.log(type);
 
                         if (type == "Model") {
                             modelArray.push(thisListingID)
@@ -464,7 +464,7 @@ function sortOtherType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortOther(user)
-            console.log(currentUser);
+            //console.log(currentUser);
         }
     })
 }
@@ -484,10 +484,10 @@ function sortOther(user) {
                     
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
-                        console.log(thisListingID);
-                        console.log(otherArray);
+                        //console.log(thisListingID);
+                        //console.log(otherArray);
                         var type = doc.data().type;
-                        console.log(type);
+                        //console.log(type);
 
                         if (type == "Other") {
                             otherArray.push(thisListingID)
@@ -509,20 +509,20 @@ function sortOther(user) {
 
 function showCards(array) {
     let listingTemplate = document.getElementById("listingCardTemplate");
-    console.log(array);
+    //console.log(array);
 
 
     for (let x = 0; x < length; x++) {
 
         document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
-        console.log(x);
+        //console.log(x);
 
     }
 
     length = array.length;
 
     for (let i = 0; i < array.length; i++) {
-        console.log("-------------");
+        //console.log("-------------");
         db.collection("listings").doc(array[i]).get().then(doc => {
             var title = doc.data().name;
             var details = doc.data().details;
@@ -591,14 +591,14 @@ function saveBookmark(listingDocID) {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayRemove(listingDocID)
             }).then(() => {
-                console.log("Bookmark removed for " + listingDocID);
+                //console.log("Bookmark removed for " + listingDocID);
                 document.getElementById(iconID).innerText = "bookmark_border";
             });
         } else {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
             }).then(function () {
-                console.log("bookmark has been saved for" + listingDocID);
+                //console.log("bookmark has been saved for" + listingDocID);
                 document.getElementById(iconID).innerText = 'bookmark';
             });
         }
