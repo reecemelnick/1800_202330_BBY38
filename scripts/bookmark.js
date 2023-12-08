@@ -1,16 +1,12 @@
-
 var length = 0;
 
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            //insertNameFromFirestore(user);
-            getBookmarks(user)
+            getBookmarks(user);
 
         } else {
-            //console.log("hehe");
             document.getElementById("noListings").innerText = "No Bookmarks";
-            //console.log("No user is signed in");
         }
     });
 }
@@ -21,9 +17,9 @@ document.getElementById("listings-go-here").removeChild(document.getElementById(
 
 function insertNameFromFirestore(user) {
     db.collection("users").doc(user.uid).get().then(userDoc => {
-        //console.log(userDoc.data().name)
+
         userName = userDoc.data().name;
-        //console.log(userName)
+
         document.getElementById("name-goes-here").innerHTML = userName;
     })
 
@@ -34,8 +30,7 @@ function getBookmarks(user) {
     let listingTemplate = document.getElementById("listingCardTemplate");
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            currentUser = db.collection("users").doc(user.uid); //global
-            //console.log(currentUser);
+            currentUser = db.collection("users").doc(user.uid);
         }
     })
 
@@ -43,12 +38,10 @@ function getBookmarks(user) {
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 length = bookmarks.length;
                 bookmarks.forEach(thisListingID => {
-                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
 
@@ -81,11 +74,10 @@ function getBookmarks(user) {
 
                         newcard.querySelector('.card-image').src = `./images/${listingCode}.jpg`;
 
-                        newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
+                        newcard.querySelector('i').id = 'save-' + docID;
 
                         newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
-                        //console.log("------");
                         document.getElementById("listings-go-here").appendChild(newcard);
 
                         firebase.auth().onAuthStateChanged(user => {
@@ -106,7 +98,6 @@ function getBookmarks(user) {
                     });
                 })
             } else {
-                //console.log("hehe");
                 document.getElementById("noListings").value("No Bookmarks");
             }
 
@@ -119,9 +110,7 @@ function getBookmarks(user) {
 function sortAscending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortAscend(user)
-            //console.log(currentUser);
-
+            sortAscend(user);
         }
     })
 }
@@ -129,14 +118,13 @@ function sortAscending() {
 function sortAscend(user) {
 
     var priceArray = [];
-    //priceArray.push(10);
+
     var idArray = [];
     db.collection("users").doc(user.uid)
         .get()
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
@@ -144,7 +132,7 @@ function sortAscend(user) {
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
                         var listingPrice = Number(doc.data().price);
-                        //console.log(listingPrice);
+
                         var flag = false;
 
                         for (let i = 0; i < priceArray.length; i++) {
@@ -169,24 +157,18 @@ function sortAscend(user) {
                                 break;
                             }
                         }
-                        //priceArray.push(listingPrice);
+
                         if (flag == false) {
                             priceArray.push(listingPrice);
                             idArray.push(thisListingID);
                         }
-                        //console.log(priceArray);
-                        //console.log(idArray);
+
                         if (idArray.length == bookmarks.length) {
                             showCards(idArray);
-                            //console.log("heyhey");
                         }
                     });
                 })
             }
-
-
-
-
         })
         .catch(error => {
             console.error("Error getting documents from Firestore:", error);
@@ -197,9 +179,7 @@ function sortAscend(user) {
 function sortDescending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortDescend(user)
-            //console.log(currentUser);
-
+            sortDescend(user);
         }
     })
 }
@@ -207,22 +187,20 @@ function sortDescending() {
 function sortDescend(user) {
 
     var priceArray = [];
-    //priceArray.push(10);
+
     var idArray = [];
     db.collection("users").doc(user.uid)
         .get()
         .then(userDoc => {
 
             var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    //console.log(thisListingID);
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
                         var listingPrice = Number(doc.data().price);
-                        //console.log(listingPrice);
+
                         var flag = false;
 
                         for (let i = 0; i < priceArray.length; i++) {
@@ -247,24 +225,18 @@ function sortDescend(user) {
                                 break;
                             }
                         }
-                        //priceArray.push(listingPrice);
+
                         if (flag == false) {
                             priceArray.push(listingPrice);
                             idArray.push(thisListingID);
                         }
-                        //console.log(priceArray);
-                        //console.log(idArray);
+
                         if (idArray.length == bookmarks.length) {
                             showCards(idArray);
-                            //console.log("heyhey");
                         }
                     });
                 })
             }
-
-
-
-
         })
         .catch(error => {
             console.error("Error getting documents from Firestore:", error);
@@ -275,203 +247,51 @@ function sortDescend(user) {
 function sortGameType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortGame(user)
-            //console.log(currentUser);
+            sortType(user, "Game");
         }
     })
 }
 
-function sortGame(user) {
-    var gameArray = [];
-    //priceArray.push(10);
-    var count = 0;
-    db.collection("users").doc(user.uid)
-        .get()
-        .then(userDoc => {
-
-            var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
-
-            if (bookmarks.length != 0) {
-                bookmarks.forEach(thisListingID => {
-                    //console.log(thisListingID);
-
-                    db.collection("listings").doc(thisListingID).get().then(doc => {
-
-                        var type = (doc.data().type);
-                        //console.log(type);
-
-                        if (type == "Game") {
-                            gameArray.push(thisListingID)
-                        }
-
-                        count += 1;
-                        if (count == bookmarks.length) {
-                            showCards(gameArray);
-                        }
-                    });
-                })
-            }
-
-        })
-        .catch(error => {
-            console.error("Error getting documents from Firestore:", error);
-        });
-}
 
 function sortToyType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortToy(user)
-            //console.log(currentUser);
+            sortType(user, "Toy");
         }
     })
 }
 
-function sortToy(user) {
-    var toyArray = [];
-    //priceArray.push(10);
-    var count = 0;
-    db.collection("users").doc(user.uid)
-        .get()
-        .then(userDoc => {
-
-            var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
-
-            if (bookmarks.length != 0) {
-                bookmarks.forEach(thisListingID => {
-                    //console.log(thisListingID);
-
-                    db.collection("listings").doc(thisListingID).get().then(doc => {
-
-                        var type = (doc.data().type);
-                        //console.log(type);
-
-                        if (type == "Toy") {
-                            toyArray.push(thisListingID)
-                        }
-
-                        count += 1;
-                        if (count == bookmarks.length) {
-                            showCards(toyArray);
-                        }
-                    });
-                })
-            }
-
-        })
-        .catch(error => {
-            console.error("Error getting documents from Firestore:", error);
-        });
-}
 
 function sortCardType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortCard(user)
-            //console.log(currentUser);
+            sortType(user, "Trading Card");
         }
     })
 }
 
-function sortCard(user) {
-    var cardArray = [];
-    //priceArray.push(10);
-    var count = 0;
-    db.collection("users").doc(user.uid)
-        .get()
-        .then(userDoc => {
-
-            var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
-
-            if (bookmarks.length != 0) {
-                bookmarks.forEach(thisListingID => {
-                    //console.log(thisListingID);
-
-                    db.collection("listings").doc(thisListingID).get().then(doc => {
-
-                        var type = (doc.data().type);
-                        //console.log(type);
-
-                        if (type == "Trading Card") {
-                            cardArray.push(thisListingID)
-                        }
-
-                        count += 1;
-                        if (count == bookmarks.length) {
-                            showCards(cardArray);
-                        }
-                    });
-                })
-            }
-
-        })
-        .catch(error => {
-            console.error("Error getting documents from Firestore:", error);
-        });
-}
 
 function sortModelType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortModel(user)
-            //console.log(currentUser);
+            sortType(user, "Model");
         }
     })
 }
 
-function sortModel(user) {
-    var modelArray = [];
-    //priceArray.push(10);
-    var count = 0;
-    db.collection("users").doc(user.uid)
-        .get()
-        .then(userDoc => {
-
-            var bookmarks = userDoc.data().bookmarks;
-            //console.log(bookmarks);
-
-            if (bookmarks.length != 0) {
-                bookmarks.forEach(thisListingID => {
-                    //console.log(thisListingID);
-
-                    db.collection("listings").doc(thisListingID).get().then(doc => {
-
-                        var type = (doc.data().type);
-                        //console.log(type);
-
-                        if (type == "Model") {
-                            modelArray.push(thisListingID)
-                        }
-
-                        count += 1;
-                        if (count == bookmarks.length) {
-                            showCards(modelArray);
-                        }
-                    });
-                })
-            }
-
-        })
-        .catch(error => {
-            console.error("Error getting documents from Firestore:", error);
-        });
-}
 
 function sortOtherType() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            sortOther(user)
-            //console.log(currentUser);
+            sortType(user, "Other");
         }
     })
 }
 
-function sortOther(user) {
-    var otherArray = [];
-    //priceArray.push(10);
+
+function sortType(user, typeCheck) {
+    var Array = [];
+
     var count = 0;
     db.collection("users").doc(user.uid)
         .get()
@@ -481,48 +301,42 @@ function sortOther(user) {
 
             if (bookmarks.length != 0) {
                 bookmarks.forEach(thisListingID => {
-                    
 
                     db.collection("listings").doc(thisListingID).get().then(doc => {
-                        //console.log(thisListingID);
-                        //console.log(otherArray);
-                        var type = doc.data().type;
-                        //console.log(type);
 
-                        if (type == "Other") {
-                            otherArray.push(thisListingID)
+                        var type = (doc.data().type);
+
+                        if (type == typeCheck) {
+                            Array.push(thisListingID)
                         }
 
                         count += 1;
                         if (count == bookmarks.length) {
-                            showCards(otherArray);
+                            showCards(Array);
                         }
                     });
                 })
             }
 
         })
-        .catch(error => {
-            console.error("Error getting documents from Firestore:", error);
-        });
 }
+
+
+
 
 function showCards(array) {
     let listingTemplate = document.getElementById("listingCardTemplate");
-    //console.log(array);
-
 
     for (let x = 0; x < length; x++) {
 
         document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
-        //console.log(x);
 
     }
 
     length = array.length;
 
     for (let i = 0; i < array.length; i++) {
-        //console.log("-------------");
+
         db.collection("listings").doc(array[i]).get().then(doc => {
             var title = doc.data().name;
             var details = doc.data().details;
@@ -580,7 +394,6 @@ function showCards(array) {
 }
 
 
-
 function saveBookmark(listingDocID) {
     currentUser.get().then(userDoc => {
         let bookmarks = userDoc.data().bookmarks;
@@ -591,17 +404,14 @@ function saveBookmark(listingDocID) {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayRemove(listingDocID)
             }).then(() => {
-                //console.log("Bookmark removed for " + listingDocID);
                 document.getElementById(iconID).innerText = "bookmark_border";
             });
         } else {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
             }).then(function () {
-                //console.log("bookmark has been saved for" + listingDocID);
                 document.getElementById(iconID).innerText = 'bookmark';
             });
         }
     })
-
 }

@@ -2,7 +2,6 @@ function displayListingsDynamically(collection) {
     let listingTemplate = document.getElementById("featuredCardTemplate");
     let listingsContainer = document.getElementById(collection + "-go-here");
 
-    // Clear existing listings before adding new ones
     listingsContainer.innerHTML = '';
 
     db.collection(collection).limit(1).get()
@@ -34,7 +33,7 @@ function displayListingsDynamically(collection) {
 
                 listingsContainer.appendChild(newcard);
             } else {
-                //console.log("No listings found.");
+                console.log("No listings found.");
             }
         })
         .catch(error => {
@@ -42,5 +41,4 @@ function displayListingsDynamically(collection) {
         });
 }
 
-// Example: Call the function with the "listings" collection
 displayListingsDynamically("listings");

@@ -3,28 +3,28 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-     
-      var user = authResult.user;                            
-      if (authResult.additionalUserInfo.isNewUser) {         
-          db.collection("users").doc(user.uid).set({         
-              name: user.displayName,                    
-              email: user.email,                         
-              country: "Canada",                      
-              city: "Burnaby",
-              address: "",
-              interests: ""
 
-          }).then(function () {
-              //console.log("New user added to firestore");
-              window.location.assign("createProfile.html");       
-          }).catch(function (error) {
-              //console.log("Error adding new user: " + error);
-          });
+      var user = authResult.user;
+      if (authResult.additionalUserInfo.isNewUser) {
+        db.collection("users").doc(user.uid).set({
+          name: user.displayName,
+          email: user.email,
+          country: "Canada",
+          city: "Burnaby",
+          address: "",
+          interests: ""
+
+        }).then(function () {
+          //console.log("New user added to firestore");
+          window.location.assign("createProfile.html");
+        }).catch(function (error) {
+          //console.log("Error adding new user: " + error);
+        });
       } else {
-          window.location.assign("main.html");
+        window.location.assign("main.html");
       }
       return false;
-  },
+    },
     uiShown: function () {
       // The widget is rendered.
       // Hide the loader.

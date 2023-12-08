@@ -1,10 +1,6 @@
-
-// Function to add documents to the 'featured' collection
 function addListing() {
-    // Reference to the 'featured' collection
     var listingRef = db.collection('listings');
 
-    // Add a document to the collection
     listingRef.add({
         code: "charizard",
         name: "Charizard",
@@ -12,7 +8,7 @@ function addListing() {
         details: "Good",
     })
         .then((docRef) => {
-            //console.log('Document written with ID:', docRef.id);
+            console.log('Document written with ID:', docRef.id);
         })
         .catch((error) => {
             console.error('Error adding document:', error);
@@ -21,7 +17,6 @@ function addListing() {
 
 var listingLength = 0;
 var length = 0;
-
 var currentUser;
 
 
@@ -30,8 +25,7 @@ function displayListingsDynamically(collection) {
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            currentUser = db.collection("users").doc(user.uid); //global
-            //console.log(currentUser);
+            currentUser = db.collection("users").doc(user.uid);
         }
     })
 
@@ -63,12 +57,11 @@ function displayListingsDynamically(collection) {
                     newcard.querySelector('.card-time').innerHTML = "Timestamp not available";
                 }
                 newcard.querySelector('.card-image').src = `./images/${listingCode}.jpg`;
-                newcard.querySelector('a').href = "viewListing.html?docID="+docID;
+                newcard.querySelector('a').href = "viewListing.html?docID=" + docID;
 
-                newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
+                newcard.querySelector('i').id = 'save-' + docID;
 
                 newcard.querySelector('i').onclick = () => saveBookmark(docID);
-
 
                 firebase.auth().onAuthStateChanged(user => {
                     if (user) {
@@ -95,10 +88,7 @@ function displayListingsDynamically(collection) {
         });
 }
 
-// Example: Call the function with the "listings" collection
 displayListingsDynamically("listings");
-
-
 
 
 function saveBookmark(listingDocID) {
@@ -112,41 +102,31 @@ function saveBookmark(listingDocID) {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayRemove(listingDocID)
             }).then(() => {
-                //console.log("Bookmark removed for " + listingDocID);
                 document.getElementById(iconID).innerText = "bookmark_border";
             });
         } else {
             currentUser.update({
                 bookmarks: firebase.firestore.FieldValue.arrayUnion(listingDocID)
             }).then(function () {
-                //console.log("bookmark has been saved for" + listingDocID);
                 document.getElementById(iconID).innerText = 'bookmark';
             });
         }
     })
-        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
         .then(function () {
-            //console.log("bookmark has been saved for" + listingDocID);
             var iconID = 'save-' + listingDocID;
-            //console.log(iconID);
-            //this is to change the icon of the hike that was saved to "filled"
             document.getElementById(iconID).innerText = 'bookmark';
         });
 }
-
-
-
 
 
 function sortAscending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortAscend(user)
-            //console.log(currentUser);
-
         }
     })
 }
+
 
 function sortAscend(user) {
 
@@ -190,12 +170,8 @@ function sortAscend(user) {
                     idArray.push(doc.id);
                 }
 
-                //console.log(priceArray);
-                //console.log(idArray);
-
                 if (count == listingLength) {
                     showCards(idArray);
-                    //console.log("heyhey");
                 }
             })
         })
@@ -206,11 +182,10 @@ function sortDescending() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             sortDescend(user)
-            //console.log(currentUser);
-
         }
     })
 }
+
 
 function sortDescend(user) {
 
@@ -254,12 +229,8 @@ function sortDescend(user) {
                     idArray.push(doc.id);
                 }
 
-                //console.log(priceArray);
-                //console.log(idArray);
-
                 if (count == listingLength) {
                     showCards(idArray);
-                    //console.log("heyhey");
                 }
             })
         })
@@ -267,147 +238,31 @@ function sortDescend(user) {
 
 
 function sortGameType() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            sortGame(user)
-            //console.log(currentUser);
-        }
-    })
+    sortType("Game");
 }
 
-function sortGame(user) {
-    var count = 0;
-    var Array = [];
-
-    db.collection("listings").get()
-        .then(allListings => {
-            allListings.forEach(doc => {
-                count += 1;
-                var type = (doc.data().type);
-                var docID = doc.id;
-                
-                if (type == "Game") {
-                    Array.push(doc.id)
-                }
-               
-                //console.log(Array);
-                if (count == listingLength) {
-                    showCards(Array);
-                    //console.log("heyhey");
-                }
-            })
-        })
-}
 
 function sortToyType() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            sortToy(user)
-            //console.log(currentUser);
-        }
-    })
+    sortType("Toy");
 }
 
-function sortToy(user) {
-    var count = 0;
-    var Array = [];
-
-    db.collection("listings").get()
-        .then(allListings => {
-            allListings.forEach(doc => {
-                count += 1;
-                var type = (doc.data().type);
-                var docID = doc.id;
-                
-                if (type == "Toy") {
-                    Array.push(doc.id)
-                }
-               
-                //console.log(Array);
-                if (count == listingLength) {
-                    showCards(Array);
-                    //console.log("heyhey");
-                }
-            })
-        })
-}
 
 function sortCardType() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            sortCard(user)
-            //console.log(currentUser);
-        }
-    })
+    sortType("Trading Card");
 }
 
-function sortCard(user) {
-    var count = 0;
-    var Array = [];
-
-    db.collection("listings").get()
-        .then(allListings => {
-            allListings.forEach(doc => {
-                count += 1;
-                var type = (doc.data().type);
-                var docID = doc.id;
-                
-                if (type == "Trading Card") {
-                    Array.push(doc.id)
-                }
-               
-                //console.log(Array);
-                if (count == listingLength) {
-                    showCards(Array);
-                    //console.log("heyhey");
-                }
-            })
-        })
-}
 
 function sortModelType() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            sortModel(user)
-            //console.log(currentUser);
-        }
-    })
+    sortType("Model");
 }
 
-function sortModel(user) {
-    var count = 0;
-    var Array = [];
-
-    db.collection("listings").get()
-        .then(allListings => {
-            allListings.forEach(doc => {
-                count += 1;
-                var type = (doc.data().type);
-                var docID = doc.id;
-                
-                if (type == "Model") {
-                    Array.push(doc.id)
-                }
-               
-                //console.log(Array);
-                if (count == listingLength) {
-                    showCards(Array);
-                    //console.log("heyhey");
-                }
-            })
-        })
-}
 
 function sortOtherType() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            sortOther(user)
-            //console.log(currentUser);
-        }
-    })
+    sortType("Other");
 }
 
-function sortOther(user) {
+
+function sortType(typeCheck) {
     var count = 0;
     var Array = [];
 
@@ -417,36 +272,32 @@ function sortOther(user) {
                 count += 1;
                 var type = (doc.data().type);
                 var docID = doc.id;
-                
-                if (type == "Other") {
+
+                if (type == typeCheck) {
                     Array.push(doc.id)
                 }
-               
-                //console.log(Array);
+
                 if (count == listingLength) {
                     showCards(Array);
-                    //console.log("heyhey");
                 }
             })
         })
 }
+
 
 function showCards(array) {
     let listingTemplate = document.getElementById("listingCardTemplate");
-    //console.log(array);
-
 
     for (let x = 0; x < length; x++) {
 
         document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
-        //console.log(x);
 
     }
 
     length = array.length;
 
     for (let i = 0; i < array.length; i++) {
-        //console.log("-------------");
+
         db.collection("listings").doc(array[i]).get().then(doc => {
             var title = doc.data().name;
             var details = doc.data().details;
