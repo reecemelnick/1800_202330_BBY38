@@ -56,33 +56,80 @@ It has the following subfolders and files:
 
 
 ## 8. Citations
-authentication.js is backend for signing up and logging in
-bookmark.js is backend for saved listings
-createProfile.js is the backend for editing profile information
-firebaseAPI_TEAM38.js is ....
-listings.js is the backend for viewing listings
-main.js is the backend for the main page
-makeListings.js is the backend for creating listings
-profile.js is the backend for the profile page
-script.js is for logging out
-skeleton.js is for the navbar and footer
 
-footer.html is for the footer
-navAfterLogin.html is for the navbar after login
-navBeforeLogin.html is for navbar before login
+## General Info
+CollecTraders is a collectible hobby marketplace to help collectors and sellers to buy and sell niche items by having a dedicated hub focused on collectibles unlike Facebook marketplace.
 
-authentication.html is the frontend for the signing up and loggin in
-bookmarks.html is the frontend for saved listings
-browseListings.html is the frontend for viewing listings
-createProfile.html is the frontend for editing profile information
-main.html is the frontend for the main page
-makeListings.html is the frontend for creating listings
-profile.html is the frontend for the profile page
-thanks.html is just a page for thanking the user after they create a post
+## Technologies
+Technologies used for this project:
+* HTML 5, CSS
+* JavaScript
+* Bootstrap 5.0
+* Firebase Version 8 (Authentication, Firestore, Storage, Hosting)
 
-We used Firebase for storing listings and user information
-We used Bootstrap for the frontend of our website
+## Content
+
+Top level of project folder: 
+├── .gitignore               # Git ignore file
+├── index.html               # landing HTML file, this is what users see when you come to url
+├── authentication.html      # login HTML file, the log-in page
+├── main.html                # main HTML file, the landing page after log-in or user set-up
+└── README.md                # woah, you're reading this now!
+└── bookmarks.html           # bookmarks HTML file, the page for saved listings
+└── browseListings.html      # browseListings HTML file, the page for viewing listings
+└── createProfile.html       # createProfile HTML file, the page for editing your personal information
+└── makeListings.html        # makeListings HTML file, the page for creating listings
+└── profile.html             # profile HTML file, the page for viewing your personal information
+└── thanks.html              # thanks HTML file, the page for thanking the user after they create a post
+
+It has the following subfolders and files:
+├── images                   # Folder for images
+        /CollecTraders.png   # Images for logo
+        
+├── scripts                      # Folder for scripts
+        /authentication.js       # JS file for signing up and logging in
+        /bookmark.js             # JS file for saved listings
+        /createProfile.js        # JS for editing profile information
+        /firebaseAPI_TEAM38.js   # has the key to access the firebase storage and database
+        /listings.js             # JS file for viewing listings
+        /main.js                 # JS file for main page
+        /makeListings.js         # JS file for making listings
+        /profile.js              # JS file for profile page
+        /script.js               # JS file to log out
+        /skeleton.js             # JS file for the navbar and footer
+
+├── styles                          # Folder for styles
+        /landingStyle.css           # style for index.html, bookmarks.html, and bookmarks.html
+        /main.css                   # style for main.html
+
+Firebase hosting files: 
+├── .firebase
+	/hosting..cache
+├── .firebaserc
+├── 404.html
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
+├── storage.rules
+
 *Note, we only designed the website resolution for iphone 12 Pro
 
 
+## Limitations
+Can't upload see images from posts
+Search bar doesn't work
+Can't properly contact sellers
 
+## Resources
+- In-app icons from Google Icons (https://fonts.google.com/icons)
+- Logo homemade!
+
+## Contact 
+* John (johnguoyh@gmail.com)
+* Reece (reececianmelnick@gmail.com)
+* James (jamescwong95@gmail.com)
+
+## Acknowledgements 
+* <a href="https://fonts.google.com/">Google Fonts</a>
+* <a href="https://getbootstrap.com/">Bootstrap</a>
+* <a href="https://firebase.google.com/">Firebase</a>
