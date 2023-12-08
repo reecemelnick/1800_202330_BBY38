@@ -47,7 +47,7 @@ function editUserInfo() {
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            getBookmarks(user)
+            getOwnPosts(user)
         } else {
             document.getElementById("noListings").innerText = "No Bookmarks";
         }
@@ -59,7 +59,7 @@ document.getElementById("listings-go-here").removeChild(document.getElementById(
 
 var lengths = 0;
 var currentUser;
-function getBookmarks(user) {
+function getOwnPosts(user) {
     for (let x = 0; x < lengths; x++) {
 
         document.getElementById("listings-go-here").removeChild(document.getElementById("listings-go-here").firstElementChild);
@@ -151,7 +151,7 @@ function getBookmarks(user) {
 }
 
 function deletePost(listingid) {
-    var result = confirm("Want to delete?");
+    var result = confirm("Want to delete? This will mean that this listing will be removed from the database and no one else will be able to see it.");
     if (result) {
         db.collection("listings").doc(listingid)
             .delete()

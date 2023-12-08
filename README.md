@@ -55,7 +55,34 @@ It has the following subfolders and files:
     /blah.css                # 
 
 
+## 8. Citations
+authentication.js is backend for signing up and logging in
+bookmark.js is backend for saved listings
+createProfile.js is the backend for editing profile information
+firebaseAPI_TEAM38.js is ....
+listings.js is the backend for viewing listings
+main.js is the backend for the main page
+makeListings.js is the backend for creating listings
+profile.js is the backend for the profile page
+script.js is for logging out
+skeleton.js is for the navbar and footer
 
-```
+footer.html is for the footer
+navAfterLogin.html is for the navbar after login
+navBeforeLogin.html is for navbar before login
+
+authentication.html is the frontend for the signing up and loggin in
+bookmarks.html is the frontend for saved listings
+browseListings.html is the frontend for viewing listings
+createProfile.html is the frontend for editing profile information
+main.html is the frontend for the main page
+makeListings.html is the frontend for creating listings
+profile.html is the frontend for the profile page
+thanks.html is just a page for thanking the user after they create a post
+
+We used Firebase for storing listings and user information
+We used Bootstrap for the frontend of our website
+*Note, we only designed the website resolution for iphone 12 Pro
+
 
 
