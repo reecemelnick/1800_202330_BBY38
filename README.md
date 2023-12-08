@@ -1,8 +1,7 @@
 # Project Title
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+CollecTraders is a collectible hobby marketplace to help collectors and sellers to buy and sell niche items by having a dedicated hub focused on collectibles unlike Facebook marketplace.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
@@ -15,59 +14,32 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * HTML, CSS, JavaScript
 * Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
-* ...
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* ...
-* ...
-* ...
+* Users need to first sign up or login
+* Now they can post and view listings
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
-* ...
-* ...
-* ...
+* Can't upload see images from posts
+* Search bar doesn't work
+* Can't properly contact sellers
+
+## Resources
+* In-app icons from Google Icons (https://fonts.google.com/icons)
+* Logo homemade!
+
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
-* ...
-* ...
+* Directly contact sellers via our website
+* Filter and sort multiple things at once
+* Store location of users and listings
 	
 ## 7. Contents of Folder
 Content of the project folder:
-
-```
- Top level of project folder: 
-├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
-└── README.md
-
-It has the following subfolders and files:
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
-├── scripts                  # Folder for scripts
-    /blah.js                 # 
-├── styles                   # Folder for styles
-    /blah.css                # 
-
-
-## 8. Citations
-
-## General Info
-CollecTraders is a collectible hobby marketplace to help collectors and sellers to buy and sell niche items by having a dedicated hub focused on collectibles unlike Facebook marketplace.
-
-## Technologies
-Technologies used for this project:
-* HTML 5, CSS
-* JavaScript
-* Bootstrap 5.0
-* Firebase Version 8 (Authentication, Firestore, Storage, Hosting)
-
-## Content
 
 Top level of project folder: 
 ├── .gitignore               # Git ignore file
@@ -113,16 +85,6 @@ Firebase hosting files:
 ├── storage.rules
 
 *Note, we only designed the website resolution for iphone 12 Pro
-
-
-## Limitations
-Can't upload see images from posts
-Search bar doesn't work
-Can't properly contact sellers
-
-## Resources
-- In-app icons from Google Icons (https://fonts.google.com/icons)
-- Logo homemade!
 
 ## Contact 
 * John (johnguoyh@gmail.com)
