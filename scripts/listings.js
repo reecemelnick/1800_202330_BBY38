@@ -60,7 +60,7 @@ function displayListingsDynamically(collection) {
                 if (img) {
                     newcard.querySelector('.card-image').src = img;
                 } else {
-                    newcard.querySelector('.card-image').src = "/images/CollecTraders.png";
+                    newcard.querySelector('.card-image').src = "images/CollecTraders.png";
                 }
                 newcard.querySelector('a').href = "viewListing.html?docID=" + docID;
 
@@ -313,6 +313,7 @@ function showCards(array) {
             var timeStamp = doc.data().timestamp;
             var listingCode = doc.data().code;
             var listingPrice = doc.data().price;
+            var img = doc.data().image;
             var docID = doc.id;
             let newcard1 = listingTemplate.content.cloneNode(true);
 
@@ -331,7 +332,11 @@ function showCards(array) {
                 newcard1.querySelector('.card-time').innerHTML = "Timestamp not available";
             }
 
-            newcard1.querySelector('.card-image').src = `./images/${listingCode}.jpg`;
+            if (img) {
+                newcard1.querySelector('.card-image').innerHTML = img;
+            } else {
+                newcard1.querySelector('.card-image').innerHTML = "images/CollecTraders.png";
+            }
 
             newcard1.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
 

@@ -114,10 +114,10 @@ function getOwnPosts(user) {
                             newcard.querySelector('.card-time').innerHTML = "Timestamp not available";
                         }
 
-                        if (img) {
+                        if (img != null) {
                             newcard.querySelector('.card-image').src = img;
                         } else {
-                            newcard.querySelector('.card-image').src = "/images/CollecTraders.png";
+                            newcard.querySelector('.card-image').src = "images/CollecTraders.png";
                         }
 
                         newcard.querySelector('i').id = 'save-' + docID;

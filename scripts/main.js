@@ -33,7 +33,7 @@ function displayListingsDynamically(collection) {
                 if (img) {
                     newcard.querySelector('.card-image').src = img;
                 } else {
-                    newcard.querySelector('.card-image').src = "/images/CollecTraders.png";
+                    newcard.querySelector('.card-image').src = "images/CollecTraders.png";
                 }
 
                 listingsContainer.appendChild(newcard);
