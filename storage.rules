@@ -4,9 +4,7 @@ rules_version = '2';
 // allow write: if firestore.get(
 //    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
 service firebase.storage {
-  match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write;
+	match /{document=**} {
+      	  allow read, write: if request.time < timestamp.date(2023, 12, 30);
     }
-  }
 }

@@ -29,7 +29,7 @@ function UserInfo() {
                     if (profilePic != null) {
                         $("#mypic-goes-here").attr("src", profilePic);
                     } else {
-                        $("#mypic-goes-here").attr("src", "images/no-image-profile.jpg")
+                        $("#mypic-goes-here").attr("src", "/images/CollecTraders.png")
                     }
                 })
         } else {
