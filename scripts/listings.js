@@ -43,6 +43,7 @@ function displayListingsDynamically(collection) {
                 var listingPrice = doc.data().price;
                 var docID = doc.id;
                 var timeStamp = doc.data().timestamp;
+                var img = doc.data().image;
                 let newcard = listingTemplate.content.cloneNode(true);
 
                 newcard.querySelector('.card-title').innerHTML = title;
@@ -56,7 +57,11 @@ function displayListingsDynamically(collection) {
                 } else {
                     newcard.querySelector('.card-time').innerHTML = "Timestamp not available";
                 }
-                newcard.querySelector('.card-image').src = `./images/${listingCode}.jpg`;
+                if (img) {
+                    newcard.querySelector('.card-image').src = img;
+                } else {
+                    newcard.querySelector('.card-image').src = "/images/CollecTraders.png";
+                }
                 newcard.querySelector('a').href = "viewListing.html?docID=" + docID;
 
                 newcard.querySelector('i').id = 'save-' + docID;
